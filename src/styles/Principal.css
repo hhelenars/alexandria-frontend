@@ -1,0 +1,32 @@
+
+.menu-button {
+    -fx-background-color: transparent;
+    -fx-border-width: 0;
+    -fx-text-fill: #2C3E50;
+    -fx-padding: 5px;
+}
+
+/* Efecto hover: fondo gris al pasar el ratón */
+.menu-button:hover {
+    -fx-background-color: #D5DBDB;
+    -fx-background-radius: 10;
+}
+
+/* 📌 Estilo minimalista para el campo de búsqueda */
+.custom-textfield {
+    -fx-background-color: transparent;  /* Sin fondo */
+    -fx-border-color: transparent transparent black transparent;  /* Línea solo abajo */
+    -fx-border-width: 0 0 1px 0;  /* Línea más gruesa abajo */
+    -fx-padding: 1px;
+    -fx-font-size: 12px;
+    -fx-text-fill: black;  /* Texto normal en negro */
+}
+
+/*  Cambiar color del placeholder (promptText) */
+.custom-textfield:focused {
+    -fx-border-color: black;  /* Cuando está enfocado, mantiene la línea negra */
+}
+
+.custom-textfield:prompt-text-visible {
+    -fx-text-fill: gray;  /* Placeholder en gris */
+}

@@ -1,0 +1,28 @@
+.registrarse-button{
+	 -fx-background-color: #000000;
+}
+
+.iniciar-button{
+	 -fx-background-color: #bfbfbf;
+}
+
+.registrarse-button:hover, .iniciar-button:hover {
+    -fx-scale-x:  1.03;
+    -fx-scale-y:  1.03;
+}
+
+.menu-button {
+    -fx-background-color: transparent;
+    -fx-border-width: 0;
+    -fx-text-fill: #2C3E50;
+    -fx-padding: 5px;
+}
+
+/* Efecto hover: fondo gris al pasar el ratón */
+.menu-button:hover {
+    -fx-background-color: #D5DBDB;
+    -fx-background-radius: 10;
+}
+
+
+
