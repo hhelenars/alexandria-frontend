@@ -11,6 +11,7 @@ module Front_Alexandria2 {
     requires okhttp3;
     requires kotlin.stdlib;
     requires javafx.web;
+    requires retrofit2.converter.scalars;
     requires epublib.core;
     requires org.slf4j;
 

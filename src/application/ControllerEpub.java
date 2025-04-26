@@ -50,6 +50,7 @@ public class ControllerEpub {
         imageViewEPUB.setPreserveRatio(true);
         imageViewEPUB.setFitWidth(500);
         imageViewEPUB.setFitHeight(400);
+               
     }
 
     public void setStage(Stage stage) {
@@ -61,48 +62,81 @@ public class ControllerEpub {
 
     @FXML
     public void abrirEPUB() {
-        logger.info("Intentando abrir un archivo EPUB...");
-        FileChooser fileChooser = new FileChooser();
-        fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("EPUB Files", "*.epub"));
-        File file = fileChooser.showOpenDialog(null);
-        if (file != null) {
-            try {
-                logger.info("Archivo seleccionado: " + file.getAbsolutePath());
-                Book book = (new EpubReader()).readEpub(new FileInputStream(file));
-                logger.info("EPUB cargado correctamente.");
+    	  logger.info("Intentando abrir un archivo EPUB desde Supabase...");
 
-                Resource coverResource = book.getCoverImage();
-                if (coverResource != null) {
-                    byte[] coverData = coverResource.getData();
-                    File tempCover = new File(file.getParent(), "temp_cover.jpg");
-                    try (FileOutputStream fos = new FileOutputStream(tempCover)) {
-                        fos.write(coverData);
-                    }
-                    Image coverImage = new Image(tempCover.toURI().toString());
-                    imageViewEPUB.setImage(coverImage);
-                    imageViewEPUB.setVisible(true);
-                    webViewEPUB.setVisible(false);
-                    logger.info("✅ Imagen de portada extraída y mostrada correctamente.");
-                } else {
-                    logger.warn("⚠️ No se encontró imagen de portada en el EPUB.");
-                }
+    	    ApiService apiService = RetrofitClient.getClient().create(ApiService.class);
+    	    retrofit2.Call<String> call = apiService.obtenerUrlFirmada("la_celestina.epub");
 
-                chapters = book.getSpine().getSpineReferences().stream()
-                        .map(ref -> ref.getResource())
-                        .toList();
-                if (!chapters.isEmpty()) {
-                    currentChapterIndex = 0;
-                } else {
-                    logger.warn("⚠️ No se encontraron capítulos en el EPUB.");
-                }
+    	    call.enqueue(new retrofit2.Callback<String>() {
+    	        @Override
+    	        public void onResponse(retrofit2.Call<String> call, retrofit2.Response<String> response) {
+    	            if (response.isSuccessful() && response.body() != null) {
+    	                String urlFirmada = response.body();
+    	                logger.info("URL firmada obtenida: " + urlFirmada);
 
-            } catch (Exception e) {
-                logger.error("Error al abrir el EPUB", e);
-                mostrarError("Error al abrir el archivo EPUB", e.getMessage());
-            }
-        } else {
-            logger.warn("No se seleccionó ningún archivo.");
-        }
+    	                try {
+    	                    // Descargar el archivo EPUB temporalmente
+    	                    java.net.URL url = new java.net.URL(urlFirmada);
+    	                    java.io.InputStream inputStream = url.openStream();
+    	                    File tempFile = File.createTempFile("epub_temp", ".epub");
+    	                    FileOutputStream outputStream = new FileOutputStream(tempFile);
+
+    	                    byte[] buffer = new byte[4096];
+    	                    int bytesRead;
+    	                    while ((bytesRead = inputStream.read(buffer)) != -1) {
+    	                        outputStream.write(buffer, 0, bytesRead);
+    	                    }
+    	                    inputStream.close();
+    	                    outputStream.close();
+
+    	                    // Abrir el EPUB descargado
+    	                    Book book = (new EpubReader()).readEpub(new FileInputStream(tempFile));
+    	                    logger.info("EPUB cargado correctamente desde Supabase.");
+
+    	                    Resource coverResource = book.getCoverImage();
+    	                    if (coverResource != null) {
+    	                        byte[] coverData = coverResource.getData();
+    	                        File tempCover = File.createTempFile("cover_temp", ".jpg");
+    	                        try (FileOutputStream fos = new FileOutputStream(tempCover)) {
+    	                            fos.write(coverData);
+    	                        }
+    	                        Image coverImage = new Image(tempCover.toURI().toString());
+    	                        Platform.runLater(() -> {
+    	                            imageViewEPUB.setImage(coverImage);
+    	                            imageViewEPUB.setVisible(true);
+    	                            webViewEPUB.setVisible(false);
+    	                        });
+    	                        logger.info("✅ Imagen de portada mostrada correctamente.");
+    	                    } else {
+    	                        logger.warn("⚠️ No se encontró imagen de portada en el EPUB.");
+    	                    }
+
+    	                    chapters = book.getSpine().getSpineReferences().stream()
+    	                            .map(ref -> ref.getResource())
+    	                            .toList();
+
+    	                    if (!chapters.isEmpty()) {
+    	                        currentChapterIndex = 0;
+    	                    } else {
+    	                        logger.warn("⚠️ No se encontraron capítulos en el EPUB.");
+    	                    }
+
+    	                } catch (Exception e) {
+    	                    logger.error("Error al descargar o abrir el EPUB", e);
+    	                    mostrarError("Error al abrir el archivo EPUB", e.getMessage());
+    	                }
+    	            } else {
+    	                logger.error("Respuesta no válida al obtener URL firmada.");
+    	                mostrarError("Error al obtener archivo", "No se pudo obtener el archivo EPUB.");
+    	            }
+    	        }
+
+    	        @Override
+    	        public void onFailure(retrofit2.Call<String> call, Throwable t) {
+    	            logger.error("Fallo en la llamada Retrofit", t);
+    	            mostrarError("Error de conexión", t.getMessage());
+    	        }
+    	    });
     }
 
     @FXML

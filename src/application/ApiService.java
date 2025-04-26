@@ -36,6 +36,9 @@ public interface ApiService {
     @GET("/api/biblioteca/lecturas")
     Call<List<Libro>> getObtenerLecturas(@Query("usuarioId") Long usuarioid);
     
+    @GET("/api/epubs/{nombreArchivo}")
+    Call<String> obtenerUrlFirmada(@Path("nombreArchivo") String nombreArchivo);
+    
     
 }
 
