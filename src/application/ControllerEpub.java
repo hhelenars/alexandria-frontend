@@ -349,26 +349,35 @@ public class ControllerEpub {
                                     String safeComentario = comentario != null ? comentario.replace("`", "\\`").replace("\"", "\\\"") : "";
 
                                     String script =
-                                        "(() => {" +
-                                        "  const text = \"" + safeTexto + "\";" +
-                                        "  const comment = \"" + safeComentario + "\";" +
-                                        "  const color = comment ? 'orange' : 'yellow';" +
-                                        "  const spanStart = '<span style=\"background-color:' + color + ';' + (comment ? 'border-bottom:1px dashed black;' : '') + '\"' + (comment ? ' title=\"' + comment + '\"' : '') + '>';"+
-                                        "  const spanEnd = '</span>';" +
-                                        "  const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT);" +
-                                        "  let nodes = [];" +
-                                        "  while (walker.nextNode()) {" +
-                                        "    nodes.push(walker.currentNode);" +
-                                        "  }" +
-                                        "  nodes.forEach(node => {" +
-                                        "    if (node.parentNode && node.parentNode.nodeName !== 'SCRIPT' && node.nodeValue.includes(text)) {" +
-                                        "      const replaced = node.nodeValue.split(text).join(spanStart + text + spanEnd);" +
-                                        "      const temp = document.createElement('span');" +
-                                        "      temp.innerHTML = replaced;" +
-                                        "      node.parentNode.replaceChild(temp, node);" +
-                                        "    }" +
-                                        "  });" +
-                                        "})();";
+                                    		"(() => {" +
+                                    		"  try {" +
+                                    		"    const text = \"" + safeTexto + "\";" +
+                                    		"    const comment = \"" + safeComentario + "\";" +
+                                    		"    const color = comment ? 'orange' : 'yellow';" +
+                                    		"    const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT);" +
+                                    		"    while (walker.nextNode()) {" +
+                                    		"      const node = walker.currentNode;" +
+                                    		"      const idx = node.nodeValue.indexOf(text);" +
+                                    		"      if (idx !== -1 && node.parentNode.nodeName !== 'SCRIPT') {" +
+                                    		"        const range = document.createRange();" +
+                                    		"        range.setStart(node, idx);" +
+                                    		"        range.setEnd(node, idx + text.length);" +
+                                    		"        const span = document.createElement('span');" +
+                                    		"        span.textContent = text;" +
+                                    		"        span.style.backgroundColor = color;" +
+                                    		"        if (comment) {" +
+                                    		"          span.title = comment;" +
+                                    		"          span.style.borderBottom = '1px dashed black';" +
+                                    		"        }" +
+                                    		"        range.deleteContents();" +
+                                    		"        range.insertNode(span);" +
+                                    		"        break;" +
+                                    		"      }" +
+                                    		"    }" +
+                                    		"  } catch (e) { console.error('Error aplicando subrayado', e); }" +
+                                    		"})();";
+
+
 
                                     webViewEPUB.getEngine().executeScript(script);
                                 }
