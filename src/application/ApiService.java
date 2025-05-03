@@ -2,10 +2,12 @@ package application;
 
 import java.util.List;
 
+import okhttp3.RequestBody;
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
+import retrofit2.http.PUT;
 import retrofit2.http.Path;
 import retrofit2.http.Query;
 
@@ -38,6 +40,14 @@ public interface ApiService {
     
     @GET("/api/epubs/{nombreArchivo}")
     Call<String> obtenerUrlFirmada(@Path("nombreArchivo") String nombreArchivo);
+    
+
+    @PUT("/api/biblioteca/anotaciones")
+    Call<Void> guardarAnotaciones(@Body Anotacion anotacion);
+
+
+    @GET("/api/biblioteca/anotaciones/{idBiblioteca}")
+    Call<String> obtenerAnotaciones(@Path("idBiblioteca") Long idBiblioteca);
     
     
 }

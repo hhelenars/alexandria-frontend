@@ -1,44 +1,32 @@
 package application;
 
-
-
 import java.util.List;
+import java.util.Map;
 
 public class Anotacion {
-    private int pagina;
-    private List<String> subrayado;
-    private List<String> comentarios;
+    private Long idBiblioteca;
+    private Map<Integer, List<Subrayado>> anotaciones;
 
-    // Constructor vacío (para que JPA/Gson pueda usarlo)
     public Anotacion() {}
 
-    public Anotacion(int pagina, List<String> subrayado, List<String> comentarios) {
-        this.pagina = pagina;
-        this.subrayado = subrayado;
-        this.comentarios = comentarios;
+    public Anotacion(Long idBiblioteca, Map<Integer, List<Subrayado>> anotaciones) {
+        this.idBiblioteca = idBiblioteca;
+        this.anotaciones = anotaciones;
     }
 
-    public int getPagina() {
-        return pagina;
+    public Long getIdBiblioteca() {
+        return idBiblioteca;
     }
 
-    public void setPagina(int pagina) {
-        this.pagina = pagina;
+    public void setIdBiblioteca(Long idBiblioteca) {
+        this.idBiblioteca = idBiblioteca;
     }
 
-    public List<String> getSubrayado() {
-        return subrayado;
+    public Map<Integer, List<Subrayado>> getAnotaciones() {
+        return anotaciones;
     }
 
-    public void setSubrayado(List<String> subrayado) {
-        this.subrayado = subrayado;
-    }
-
-    public List<String> getComentarios() {
-        return comentarios;
-    }
-
-    public void setComentarios(List<String> comentarios) {
-        this.comentarios = comentarios;
+    public void setAnotaciones(Map<Integer, List<Subrayado>> anotaciones) {
+        this.anotaciones = anotaciones;
     }
 }

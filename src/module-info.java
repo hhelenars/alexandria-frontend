@@ -14,6 +14,7 @@ module Front_Alexandria2 {
     requires retrofit2.converter.scalars;
     requires epublib.core;
     requires org.slf4j;
+    requires org.jsoup;
 
     //  para que Gson pueda acceder a la clase Libro
     exports application to com.google.gson;
