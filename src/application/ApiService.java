@@ -29,7 +29,7 @@ public interface ApiService {
     @GET("/api/usuarios/login")
     Call<Usuario> loginUsuario(@Query("email") String email, @Query("contrasena") String contrasena);
 
-    @POST("/api/usuarios/crear")
+    @POST("/api/usuarios/registrar")
     Call<Usuario> crearUusario(@Body Usuario usuario);
     
     @GET("/api/biblioteca/favoritos")

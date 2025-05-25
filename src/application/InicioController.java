@@ -1,14 +1,20 @@
 package application;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.List;
 
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -20,6 +26,9 @@ public class InicioController {
 
     @FXML
     private Button btnIniciarSesion, btnCrearCuenta;
+    
+    @FXML
+	private AnchorPane rootPane;
 
     @FXML
     private ListView<String> listalibros;
@@ -62,9 +71,11 @@ public class InicioController {
     private void handleButtonAction(ActionEvent event) {
         if (event.getSource() == btnIniciarSesion) {
             System.out.println("🔐 Ir a Iniciar Sesión");
+            cambiarEscena("Login.fxml");
             // Aquí puedes cargar la pantalla de Iniciar Sesión
         } else if (event.getSource() == btnCrearCuenta) {
             System.out.println("📝 Ir a Crear Cuenta");
+            cambiarEscena("CrearCuenta.fxml");
             // Aquí puedes cargar la pantalla de Registro
         }
     }
@@ -88,6 +99,20 @@ public class InicioController {
         // Poner la imagen a la izquierda del texto
         button.setGraphic(view);
         button.setContentDisplay(javafx.scene.control.ContentDisplay.LEFT);
+    }
+    
+    private void cambiarEscena(String fxml) {
+        Platform.runLater(() -> {
+            try {
+            	FXMLLoader loader = new FXMLLoader(getClass().getResource(fxml));
+                Scene nuevaEscena = new Scene(loader.load());
+                Stage stage = (Stage) rootPane.getScene().getWindow();
+                stage.setScene(nuevaEscena);
+                stage.show();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        });
     }
 }
 

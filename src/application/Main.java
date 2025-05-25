@@ -12,7 +12,7 @@ public class Main extends Application {
 	@Override
     public void start(Stage primaryStage) {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/application/Epub.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/application/Inicio.fxml"));
             Parent root = loader.load();
 
             Scene scene = new Scene(root, 900, 600);
