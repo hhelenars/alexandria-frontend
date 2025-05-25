@@ -11,97 +11,97 @@
 			<attribute name="module" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="C:/Users/helen/OneDrive/Documentos/2 DAM/PROGRAMAR/Libresias agrupadas/Java fx/javafx-sdk-21.0.6/lib/javafx.base.jar">
+	<classpathentry kind="lib" path="lib/converter-gson-2.9.0.jar">
 		<attributes>
 			<attribute name="module" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="C:/Users/helen/OneDrive/Documentos/2 DAM/PROGRAMAR/Libresias agrupadas/Java fx/javafx-sdk-21.0.6/lib/javafx.controls.jar">
+	<classpathentry kind="lib" path="lib/converter-scalars-2.9.0.jar">
 		<attributes>
 			<attribute name="module" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="C:/Users/helen/OneDrive/Documentos/2 DAM/PROGRAMAR/Libresias agrupadas/Java fx/javafx-sdk-21.0.6/lib/javafx.fxml.jar">
+	<classpathentry kind="lib" path="lib/epublib-core-3.1.jar">
 		<attributes>
 			<attribute name="module" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="C:/Users/helen/OneDrive/Documentos/2 DAM/PROGRAMAR/Libresias agrupadas/Java fx/javafx-sdk-21.0.6/lib/javafx.graphics.jar">
+	<classpathentry kind="lib" path="lib/gson-2.8.9.jar">
 		<attributes>
 			<attribute name="module" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="C:/Users/helen/OneDrive/Documentos/2 DAM/PROGRAMAR/Libresias agrupadas/Java fx/javafx-sdk-21.0.6/lib/javafx.media.jar">
+	<classpathentry kind="lib" path="lib/javafx.base.jar">
 		<attributes>
 			<attribute name="module" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="C:/Users/helen/OneDrive/Documentos/2 DAM/PROGRAMAR/Libresias agrupadas/Java fx/javafx-sdk-21.0.6/lib/javafx.swing.jar">
+	<classpathentry kind="lib" path="lib/javafx.controls.jar">
 		<attributes>
 			<attribute name="module" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="C:/Users/helen/OneDrive/Documentos/2 DAM/PROGRAMAR/Libresias agrupadas/Java fx/javafx-sdk-21.0.6/lib/javafx.web.jar">
+	<classpathentry kind="lib" path="lib/javafx.fxml.jar">
 		<attributes>
 			<attribute name="module" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="C:/Users/helen/OneDrive/Documentos/2 DAM/PROGRAMAR/Libresias agrupadas/Java fx/javafx-sdk-21.0.6/lib/javafx-swt.jar">
+	<classpathentry kind="lib" path="lib/javafx.graphics.jar">
 		<attributes>
 			<attribute name="module" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="C:/Users/helen/Downloads/gson-2.8.9.jar">
+	<classpathentry kind="lib" path="lib/javafx.media.jar">
 		<attributes>
 			<attribute name="module" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="C:/Users/helen/Downloads/converter-gson-2.9.0.jar">
+	<classpathentry kind="lib" path="lib/javafx.swing.jar">
 		<attributes>
 			<attribute name="module" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="C:/Users/helen/Downloads/retrofit-2.9.0.jar">
+	<classpathentry kind="lib" path="lib/javafx.web.jar">
 		<attributes>
 			<attribute name="module" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="C:/Users/helen/Downloads/okhttp-4.9.3.jar">
+	<classpathentry kind="lib" path="lib/javafx-swt.jar">
 		<attributes>
 			<attribute name="module" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="C:/Users/helen/Downloads/okio-2.10.0.jar">
+	<classpathentry kind="lib" path="lib/jsoup-1.17.2.jar">
 		<attributes>
 			<attribute name="module" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="C:/Users/helen/Downloads/kotlin-stdlib-1.6.21.jar">
+	<classpathentry kind="lib" path="lib/kotlin-stdlib-1.6.21.jar">
 		<attributes>
 			<attribute name="module" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="C:/Users/helen/Downloads/epublib-core-3.1.jar">
+	<classpathentry kind="lib" path="lib/okhttp-4.9.3.jar">
 		<attributes>
 			<attribute name="module" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="C:/Users/helen/Downloads/slf4j-simple-1.7.36.jar">
+	<classpathentry kind="lib" path="lib/okio-2.10.0.jar">
 		<attributes>
 			<attribute name="module" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="C:/Users/helen/Downloads/slf4j-api-1.7.36.jar">
+	<classpathentry kind="lib" path="lib/retrofit-2.9.0.jar">
 		<attributes>
 			<attribute name="module" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="C:/Users/helen/Downloads/converter-scalars-2.9.0.jar">
+	<classpathentry kind="lib" path="lib/slf4j-api-1.7.36.jar">
 		<attributes>
 			<attribute name="module" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="C:/Users/helen/Downloads/jsoup-1.17.2.jar">
+	<classpathentry kind="lib" path="lib/slf4j-simple-1.7.36.jar">
 		<attributes>
 			<attribute name="module" value="true"/>
 		</attributes>
